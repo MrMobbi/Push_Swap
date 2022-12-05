@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:19:21 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/05 13:35:00 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:20:45 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,26 @@ void	ft_sort_check(double *list, int start, int pivot)
 	tmp = list[j];
 	list[j] = list[i];
 	list[i] = tmp;
-	if (pivot - start > 2)
+	if (pivot - start >= 2)
 	{
 		ft_sort_check(list, 0, i- 1);
-		ft_sort_check(list, i + 1, pivot);
+		if (ft_check_pivot(list, pivot) == 0)
+			ft_sort_check(list, i + 1, pivot);
 	}
+}
+
+int	ft_check_pivot(double *list, int pivot)
+{
+	int	i;
+	int	tmp;
+
+	i = 0;
+	tmp = list[pivot];
+	while (i <= pivot)
+	{
+		if (list[i] > list[pivot])
+				return (0);
+		i++;
+	}
+	return (1);
 }

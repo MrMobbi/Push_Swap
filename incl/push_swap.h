@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 11:57:44 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/05 17:06:47 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:26:37 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_envi {
 //		##### Ft_Init_Env.c ######
 void	ft_init_env(t_envi *env, t_tab *check, int ac, char **av);
 void	ft_add_number_in_list(t_envi *env, t_tab *check, int i);
+void	ft_check_nbr_numbers(t_tab *check, char *str);
 t_tab	*ft_init_check(t_tab *check, int ac, char **av);
 
 //		###### Ft_One_String.c #####
@@ -51,6 +52,7 @@ void	ft_add_index(t_tab *check, t_envi *env);
 void	ft_sort_check(double *list, int start, int pivot);
 void	ft_index_to_list(t_tab *check, t_envi *env);
 void	ft_index(t_list *lst, int i, double nbr);
+int		ft_check_pivot(double *list, int pivot);
 
 //		##### Ft_Push_And_Swap.c #####
 

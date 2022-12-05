@@ -6,13 +6,11 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 12:59:53 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/05 16:53:35 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:26:49 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_check_nbr_numbers(t_tab *check, char *str);
 
 void	ft_init_env(t_envi *env, t_tab *check, int ac, char **av)
 {
@@ -49,8 +47,8 @@ void	ft_check_nbr_numbers(t_tab *check, char *str)
 		i++;
 	}
 	printf("count -> [%d]\n", count);
-//	if (count > 1)
-//	check = ft_one_string(str);
+	if (count > 1)
+	check = ft_one_string(str);
 }
 
 void	ft_add_number_in_list(t_envi *env, t_tab *check, int i)

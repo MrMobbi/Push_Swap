@@ -6,7 +6,7 @@
 #    By: mjulliat <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/01 12:18:20 by mjulliat          #+#    #+#              #
-#    Updated: 2022/12/05 17:01:24 by mjulliat         ###   ########.fr        #
+#    Updated: 2022/12/05 18:14:05 by mjulliat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SOURCES		= main.c\
 
 SRCS		= $(addprefix $(SRCS_PATH)/,$(SOURCES))
 OBJS		= $(addprefix $(OBJS_PATH)/,$(SOURCES:.c=.o))
+
 	### COLORS ###
 
 RED			= \033[1;31m
