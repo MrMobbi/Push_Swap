@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 11:57:44 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/05 18:26:37 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:42:02 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,29 @@ typedef struct s_envi {
 
 //		##### Ft_Init_Env.c ######
 void	ft_init_env(t_envi *env, t_tab *check, int ac, char **av);
-void	ft_add_number_in_list(t_envi *env, t_tab *check, int i);
 void	ft_check_nbr_numbers(t_tab *check, char *str);
+void	ft_add_number_in_list(t_envi *env, t_tab *check, int i);
 t_tab	*ft_init_check(t_tab *check, int ac, char **av);
 
 //		###### Ft_One_String.c #####
-t_tab	*ft_one_string(char *str);
+t_tab	*ft_one_string(char *str, t_tab *check);
+int		ft_count_numbers(char **str);
+t_tab	*ft_init_check_one(t_tab *check, int count, char **av);
 
 //		##### Ft_Quick_Sort.c #####
 int		ft_quick_sort(t_envi *env);
 
 //		##### Ft_Add_Index.c #####
 void	ft_add_index(t_tab *check, t_envi *env);
-void	ft_sort_check(double *list, int start, int pivot);
 void	ft_index_to_list(t_tab *check, t_envi *env);
 void	ft_index(t_list *lst, int i, double nbr);
+void	ft_sort_check(double *list, int start, int pivot);
 int		ft_check_pivot(double *list, int pivot);
 
 //		##### Ft_Push_And_Swap.c #####
+void	ft_swap(t_list **list);
+void	ft_push_a(t_envi *env);
+void	ft_push_b(t_envi *env);
 
 //		##### Ft_Rotate_And_Reverse.c #####
 
@@ -62,11 +67,13 @@ int		ft_check_pivot(double *list, int pivot);
 double	ft_atod(char *str);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(t_tab *check, int i);
-char	*ft_calloc(size_t count, size_t size);
 char	*ft_substr(char const *str, size_t start, size_t len);
+char	*ft_calloc(size_t count, size_t size);
 
-//		##### Utils.c #####
+//		##### Utils_2.c #####
 size_t	ft_strlen(const char *str);
+void	ft_free_and_exit(t_envi *env, t_tab *check);
+void	ft_free_list(t_list *list);
 
 //		##### Ft_Split.c #####
 int		ft_count_word(const char *str, char c);
@@ -75,7 +82,7 @@ int		ft_find_next_word(const char *str, int index, char c);
 char	**ft_split(char const *str, char c);
 
 //		##### Ft_Error.c #####
-int		ft_error(t_tab *check, int ac, char **av);
+int		ft_error(t_envi *env, t_tab *check, int ac, char **av);
 int		ft_check_error(int ac, char **av);
 int		ft_check_arg(char *str);
 int		ft_check_double(double *tab, int len);

@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:19:21 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/05 18:20:45 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/06 11:50:46 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_index_to_list(t_tab *check, t_envi *env)
 {
 	t_list	*tmp;
 	int		i;
-	
+
 	tmp = env->start_a;
 	i = 0;
 	while (i < check->len_a)
@@ -34,7 +34,7 @@ void	ft_index_to_list(t_tab *check, t_envi *env)
 
 void	ft_index(t_list *lst, int i, double nbr)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = lst;
 	while (tmp->next != NULL)
@@ -55,10 +55,10 @@ void	ft_sort_check(double *list, int start, int pivot)
 
 	j = start;
 	i = j -1;
-	tmp  = 0;
+	tmp = 0;
 	while (j < pivot)
 	{
-		if (list[j] <  list[pivot])
+		if (list[j] < list[pivot])
 		{
 			i++;
 			tmp = list[j];
@@ -71,9 +71,9 @@ void	ft_sort_check(double *list, int start, int pivot)
 	tmp = list[j];
 	list[j] = list[i];
 	list[i] = tmp;
-	if (pivot - start >= 2)
+	if (pivot - start > 0)
 	{
-		ft_sort_check(list, 0, i- 1);
+		ft_sort_check(list, 0, i - 1);
 		if (ft_check_pivot(list, pivot) == 0)
 			ft_sort_check(list, i + 1, pivot);
 	}
@@ -85,11 +85,11 @@ int	ft_check_pivot(double *list, int pivot)
 	int	tmp;
 
 	i = 0;
-	tmp = list[pivot];
-	while (i <= pivot)
+	tmp = list[i];
+	while (i < pivot)
 	{
-		if (list[i] > list[pivot])
-				return (0);
+		if (list[i] > list[i + 1])
+			return (0);
 		i++;
 	}
 	return (1);

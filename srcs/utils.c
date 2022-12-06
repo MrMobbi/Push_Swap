@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:54:52 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/05 17:06:35 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/06 10:20:09 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char	*ft_calloc(size_t count, size_t size)
 	cal = malloc(count * size);
 	if (!cal)
 		return (0);
-	while (i <= count * size)
+	while (i < count * size)
 	{
 		cal[i] = 0;
 		i++;

@@ -6,28 +6,28 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 16:44:57 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/05 13:35:42 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/06 12:13:04 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_error(t_tab *check, int ac, char **av)
+int	ft_error(t_envi *env, t_tab *check, int ac, char **av)
 {
 	if (ft_check_error(ac, av) == 1)
 	{
-		write(2, "Error\n", 6);	
-		return (1);
+		write(2, "Error\n", 6);
+		ft_free_and_exit(env, check);
 	}
 	if (ft_check_double(check->a, check->len_a) == 1)
 	{
-		write(2, "Error\n", 6);	
-		return (1);
+		write(2, "Error\n", 6);
+		ft_free_and_exit(env, check);
 	}
 	if (ft_check_int(check->a, check->len_a) == 1)
 	{
-		write(2, "Error\n", 6);	
-		return (1);
+		write(2, "Error\n", 6);
+		ft_free_and_exit(env, check);
 	}
 	return (0);
 }

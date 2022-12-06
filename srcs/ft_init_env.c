@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 12:59:53 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/05 18:26:49 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/06 14:20:57 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	ft_init_env(t_envi *env, t_tab *check, int ac, char **av)
 	env->start_a = a;
 	env->start_b = NULL;
 	env->count = 0;
-	if (ac > 2)
-		ft_add_number_in_list(env, check, i);
+	ft_add_number_in_list(env, check, i);
 }
 
 void	ft_check_nbr_numbers(t_tab *check, char *str)
@@ -42,13 +41,14 @@ void	ft_check_nbr_numbers(t_tab *check, char *str)
 	while (str[i] != '\0')
 	{
 		if (((str[i] >= '0' && str[i] <= '9') || str[i] == '-' || \
-				str[i] == '+') && str[-i - 1] == ' ')
+				str[i] == '+') && str[i - 1] == ' ')
 			count ++;
 		i++;
 	}
-	printf("count -> [%d]\n", count);
 	if (count > 1)
-	check = ft_one_string(str);
+		check = ft_one_string(str, check);
+	else
+		exit(0);
 }
 
 void	ft_add_number_in_list(t_envi *env, t_tab *check, int i)
