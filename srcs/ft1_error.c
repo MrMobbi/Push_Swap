@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft1_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 16:44:57 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/06 12:13:04 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/07 15:01:13 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	ft_error(t_envi *env, t_tab *check, int ac, char **av)
 		write(2, "Error\n", 6);
 		ft_free_and_exit(env, check);
 	}
-	if (ft_check_double(check->a, check->len_a) == 1)
+	if (ft_check_double(check->tab, check->len) == 1)
 	{
 		write(2, "Error\n", 6);
 		ft_free_and_exit(env, check);
 	}
-	if (ft_check_int(check->a, check->len_a) == 1)
+	if (ft_check_int(check->tab, check->len) == 1)
 	{
 		write(2, "Error\n", 6);
 		ft_free_and_exit(env, check);

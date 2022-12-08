@@ -6,13 +6,13 @@
 #    By: mjulliat <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/01 12:18:20 by mjulliat          #+#    #+#              #
-#    Updated: 2022/12/05 18:14:05 by mjulliat         ###   ########.fr        #
+#    Updated: 2022/12/08 16:03:33 by mjulliat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 	### COMPILATION ###
 
-CC			= gcc -g -fsanitize=address
+CC			= gcc -g
 FLAGS		= -Wall -Werror -Wextra
 
 	### EXECUTABLE ###
@@ -32,14 +32,14 @@ PRINTF		= ft_printf
 SOURCES		= main.c\
 			  utils.c\
 			  utils_2.c\
-			  ft_error.c\
-			  ft_quick_sort.c\
-			  ft_swap_and_push.c\
-			  ft_rotate_and_reverse.c\
-			  ft_init_env.c\
-			  ft_add_index.c\
-			  ft_split.c\
-			  ft_one_string.c
+			  ft1_error.c\
+			  ft1_init_env.c\
+			  ft1_add_index.c\
+			  ft1_split.c\
+			  ft1_one_string.c\
+			  ft2_solver.c\
+			  ft2_swap_and_push.c\
+			  ft2_rotate_and_reverse.c
 
 	### OBJETCTS ###
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_index.c                                     :+:      :+:    :+:   */
+/*   ft1_add_index.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:19:21 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/06 11:50:46 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/07 17:15:44 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_add_index(t_tab *check, t_envi *env)
 {
-	ft_sort_check(check->a, 0, check->len_a - 1);
+	ft_sort_check(check->tab, 0, check->len - 1);
 	ft_index_to_list(check, env);
 }
 
@@ -23,11 +23,11 @@ void	ft_index_to_list(t_tab *check, t_envi *env)
 	t_list	*tmp;
 	int		i;
 
-	tmp = env->start_a;
+	tmp = env->st_a;
 	i = 0;
-	while (i < check->len_a)
+	while (i < check->len)
 	{
-		ft_index(env->start_a, i, check->a[i]);
+		ft_index(env->st_a, i, check->tab[i]);
 		i++;
 	}
 }

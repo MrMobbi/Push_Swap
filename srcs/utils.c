@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:54:52 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/06 10:20:09 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:59:59 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_list	*ft_lstnew(t_tab *check, int i)
 	new = malloc(sizeof(t_list));
 	if (new == NULL)
 		return (NULL);
-	new->value = check->a[i];
+	new->value = check->tab[i];
 	new->index = 0;
 	new->next = NULL;
 	return (new);

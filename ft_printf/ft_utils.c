@@ -6,28 +6,11 @@
 /*   By: mjulliat <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 13:37:05 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/10/26 12:28:08 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/07 17:29:49 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-char	*ft_calloc(size_t size, size_t nbyte)
-{
-	char	*str;
-	size_t	i;
-
-	i = 0;
-	str = malloc(size * nbyte);
-	if (!str)
-		return (NULL);
-	while (i < size + nbyte)
-	{
-		str[i] = '\0';
-		i++;
-	}
-	return (str);
-}
 
 int	ft_putnbr(int n)
 {

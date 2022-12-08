@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_env.c                                      :+:      :+:    :+:   */
+/*   ft1_init_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 12:59:53 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/06 14:20:57 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/08 15:06:34 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,31 @@ void	ft_init_env(t_envi *env, t_tab *check, int ac, char **av)
 		check = ft_init_check(check, ac, av);
 	a = ft_lstnew(check, i);
 	i++;
-	env->start_a = a;
-	env->start_b = NULL;
-	env->count = 0;
+	env->st_a = a;
+	env->st_b = NULL;
+	env->max_index = check->len;
+	env->len_a = check->len;
+	env->limit = check->len - 3;
+	env->pi = 0;
+	ft_init_chonk(env);
+	env->index_chonk = 3;
 	ft_add_number_in_list(env, check, i);
+}
+
+void	ft_init_chonk(t_envi *env)
+{
+	if (env->max_index >= 0 && env->max_index <= 20)
+		env->chonk = 10;
+	else if (env->max_index >= 21 && env->max_index <= 60)
+		env->chonk = 15;
+	else if (env->max_index >= 61 && env->max_index <= 150)
+		env->chonk = 20;
+	else if (env->max_index >= 150 && env->max_index <= 300)
+		env->chonk = 25;
+	else if (env->max_index >= 301 && env->max_index <= 500)
+		env->chonk = 30;
+	else
+		env->chonk = 40;
 }
 
 void	ft_check_nbr_numbers(t_tab *check, char *str)
@@ -35,7 +56,6 @@ void	ft_check_nbr_numbers(t_tab *check, char *str)
 	int	i;
 	int	count;
 
-	(void) check;
 	i = 0;
 	count = 1;
 	while (str[i] != '\0')
@@ -55,8 +75,8 @@ void	ft_add_number_in_list(t_envi *env, t_tab *check, int i)
 {
 	t_list	*tmp;
 
-	tmp = env->start_a;
-	while (i < check->len_a)
+	tmp = env->st_a;
+	while (i < check->len)
 	{
 		tmp = ft_lstlast(tmp);
 		tmp->next = ft_lstnew(check, i);
@@ -69,13 +89,13 @@ t_tab	*ft_init_check(t_tab *check, int ac, char **av)
 	int	i;
 
 	i = 1;
-	check->len_a = ac - 1;
-	check->a = malloc(sizeof(double) * check->len_a);
-	if (!check->a)
+	check->len = ac - 1;
+	check->tab = malloc(sizeof(double) * check->len);
+	if (!check->tab)
 		return (NULL);
 	while (i < ac)
 	{
-		check->a[i - 1] = ft_atod(av[i]);
+		check->tab[i - 1] = ft_atod(av[i]);
 		i++;
 	}
 	return (check);

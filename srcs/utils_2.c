@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:02:29 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/06 18:59:31 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/07 17:20:05 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,15 @@ size_t	ft_strlen(const char *str)
 
 void	ft_free_and_exit(t_envi *env, t_tab *check)
 {
-	ft_free_list(env->start_a);
-	free(check->a);
+	ft_free_list(env->st_a);
+	free(check->tab);
 	exit(0);
+}
+
+void	ft_free(t_envi *env, t_tab *check)
+{
+	ft_free_list(env->st_a);
+	free(check->tab);
 }
 
 void	ft_free_list(t_list *list)

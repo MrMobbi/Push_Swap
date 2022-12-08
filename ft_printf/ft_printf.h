@@ -6,7 +6,7 @@
 /*   By: mjulliat <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:36:53 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/10/26 12:29:56 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/07 17:29:57 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <stdlib.h>
 
 int		ft_printf(const char *str, ...);
-
-char	*ft_calloc(size_t size, size_t nbyte);
 
 int		ft_putchar(char c);
 int		ft_sort(va_list args, char c);
