@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:32:01 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/08 16:09:52 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:13:53 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	ft_step1(t_envi *env)
 	env->pi += env->chonk;
 	while (env->len_a > 3)
 	{
+		if (env->index_chonk == env->pi)
+			env->pi += env->chonk;
 		if (env->st_a->index <= env->limit && env->st_a->index <= env->pi)
 		{
 			if (env->st_a->index <= env->limit && env->st_a->index <= env->pi / 2)
@@ -103,6 +105,7 @@ void	ft_step1(t_envi *env)
 			ft_rotate_a(env);
 			ft_printf("ra\n");
 		}
+		env->index_chonk++;
 	}	
 }
 
