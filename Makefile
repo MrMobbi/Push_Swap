@@ -6,7 +6,7 @@
 #    By: mjulliat <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/01 12:18:20 by mjulliat          #+#    #+#              #
-#    Updated: 2022/12/08 16:03:33 by mjulliat         ###   ########.fr        #
+#    Updated: 2022/12/08 21:09:38 by mjulliat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ $(NAME):	$(OBJ) $(OBJS)
 			@echo "$(GREEN)######## Project Compilated ######## $(WHITE)"
 
 printf:
-			make -C $(PRINTF)
+			make -sC $(PRINTF)
 			cp ft_printf/libftprintf.a .
 			@echo "$(CYAN)######## LIBFTPRINTF.A Created ######## $(WHITE)"
 

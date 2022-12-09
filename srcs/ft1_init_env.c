@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 12:59:53 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/08 17:14:02 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/09 13:16:12 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ void	ft_init_chonk(t_envi *env)
 	if (env->max_index >= 0 && env->max_index <= 20)
 		env->chonk = 10;
 	else if (env->max_index >= 21 && env->max_index <= 60)
-		env->chonk = 15;
+		env->chonk = 12;
 	else if (env->max_index >= 61 && env->max_index <= 150)
-		env->chonk = 20;
+		env->chonk = 18;
 	else if (env->max_index >= 150 && env->max_index <= 300)
 		env->chonk = 25;
 	else if (env->max_index >= 301 && env->max_index <= 500)
-		env->chonk = 30;
+		env->chonk = 28;
 	else
 		env->chonk = 40;
 }
@@ -55,9 +55,11 @@ void	ft_check_nbr_numbers(t_tab *check, char *str)
 {
 	int	i;
 	int	count;
+	int	test;
 
 	i = 0;
 	count = 1;
+	test = 0;
 	while (str[i] != '\0')
 	{
 		if (((str[i] >= '0' && str[i] <= '9') || str[i] == '-' || \
@@ -68,7 +70,12 @@ void	ft_check_nbr_numbers(t_tab *check, char *str)
 	if (count > 1)
 		check = ft_one_string(str, check);
 	else
+	{
+		test = ft_check_arg(str);
+		if (test == 1)
+			write(2, "Error\n", 6);
 		exit(0);
+	}
 }
 
 void	ft_add_number_in_list(t_envi *env, t_tab *check, int i)

@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:32:01 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/08 17:13:53 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/09 10:41:51 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_step1(t_envi *env);
 void	ft_solve_a(t_envi *env);
-int		ft_search_path(t_list *list);
+int		ft_search_path(t_list *list, int value);
 
 int	ft_solver(t_envi *env)
 {
@@ -26,7 +26,7 @@ int	ft_solver(t_envi *env)
 	{
 		while (env->st_b->index != env->st_a->index - 1)
 		{
-			if (ft_search_path(env->st_b) >= env->chonk)
+			if (ft_search_path(env->st_b, env->st_a->index - 1) < env->st_a->index / 2)
 			{
 				ft_rotate_b(env);
 				ft_printf("rb\n");
@@ -43,15 +43,17 @@ int	ft_solver(t_envi *env)
 	return (0);
 }
 
-int	ft_search_path(t_list *list)
+int	ft_search_path(t_list *list, int value)
 {
 	int		i;
 	t_list	*path;
 
 	path = list;
 	i = 0;
-	while (path->next != NULL)
+	while (1)
 	{
+		if (path->index == value)
+			break ;
 		path = path->next;
 		i++;
 	}
@@ -61,6 +63,7 @@ int	ft_search_path(t_list *list)
 void	ft_solve_a(t_envi *env)
 {
 	t_list	*check;
+
 	while (ft_check_sort(env) == 1)
 	{
 		while (env->st_a->index != env->max_index)
@@ -92,20 +95,26 @@ void	ft_step1(t_envi *env)
 			{
 				ft_push_b(env);
 				ft_rotate_b(env);
+				env->index_chonk++;
 				ft_printf("pb\nrb\n");
 			}
 			else
 			{
 				ft_push_b(env);
+				env->index_chonk++;
 				ft_printf("pb\n");
 			}
 		}
-		else
+		else if (ft_search_path(env->st_a, env->st_a->index) < env->len_a / 2)
 		{
 			ft_rotate_a(env);
 			ft_printf("ra\n");
 		}
-		env->index_chonk++;
+		else
+		{
+			ft_reverse_a(env);
+			ft_printf("rra\n");
+		}
 	}	
 }
 

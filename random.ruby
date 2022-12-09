@@ -1,8 +1,8 @@
 b = []
 ARGV[0].to_i.times { |i|
-	c = rand(-2147483648..2147483647)
+	c = rand(-5000..5000)
 	while b.include?(c)
-		c = rand(-2147483648..2147483647)
+		c = rand(-5000..5000)
 	end
 	b.append(c)
 }
