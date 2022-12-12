@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:32:01 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/12 15:58:11 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:26:19 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,60 @@ void	ft_solve_a(t_envi *env);
 int		ft_lstlast_nbr(t_list *lst, int old);
 int		ft_search_path(t_list *list, int value);
 
+void	ft_solve_2nbr(t_envi *env)
+{
+	if (ft_check_sort(env) == 1)
+	{
+		ft_rotate_a(env);
+		ft_printf("ra\n");
+	}
+}
+
+void	ft_solve_5nbr(t_envi *env)
+{
+	int	i;
+
+	i = 1;
+	while (i < 3)
+	{
+		if (env->st_a->index == i)
+		{
+			ft_push_b(env);
+			ft_printf("pb\n");
+			i++;
+		}
+		else if (ft_search_path(env->st_a, i) <= 2)
+		{
+			ft_rotate_a(env);
+			ft_printf("ra\n");
+		}
+		else
+		{
+			ft_reverse_a(env);
+			ft_printf("rra\n");
+		}
+	}
+	ft_solve_a(env);
+	ft_push_a(env);
+	ft_printf("pa\n");
+	ft_push_a(env);
+	ft_printf("pa\n");
+}
+
 int	ft_solver(t_envi *env)
 {
 	if (ft_check_sort(env) == 0)
 		return (0);
+	if (env->max_index == 2)
+	{
+		ft_solve_2nbr(env);
+		return (0);
+	}
+	if (env->max_index == 5)
+	{
+		ft_solve_5nbr(env);
+		return (0);
+	}
 	ft_step1(env);
 	ft_solve_a(env);
 	while (ft_check_sort(env) == 1 || env->st_b != NULL)
@@ -45,8 +95,19 @@ int	ft_solver(t_envi *env)
 			}
 			else
 			{
-				ft_reverse_b(env);
-				ft_printf("rrb\n");
+				if (env->st_b->index < env->st_a->index - 2 && env->st_b->index > env->under_a)
+				{
+					env->under_a = env->st_b->index;
+					ft_push_a(env);
+					ft_rotate_a(env);
+					ft_printf("pa\nra\n");
+					env->rotate++;
+				}
+				else
+				{
+					ft_reverse_b(env);
+					ft_printf("rrb\n");
+				}
 			}
 		}
 		ft_push_a(env);
@@ -101,13 +162,23 @@ int	ft_search_path(t_list *list, int value)
 void	ft_solve_a(t_envi *env)
 {
 	t_list	*check;
+	int		i;
 
+	i = env->max_index;
 	while (ft_check_sort(env) == 1)
 	{
 		while (env->st_a->index != env->max_index)
 		{
-			ft_rotate_a(env);
-			ft_printf("ra\n");
+			if (ft_search_path(env->st_a, i) < 2)
+			{
+				ft_rotate_a(env);
+				ft_printf("ra\n");
+			}
+			else
+			{
+				ft_reverse_a(env);
+				ft_printf("rra\n");
+			}
 		}
 		ft_rotate_a(env);
 		ft_printf("ra\n");
