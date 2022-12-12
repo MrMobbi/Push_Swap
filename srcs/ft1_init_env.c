@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 12:59:53 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/09 13:16:12 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/12 12:10:46 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ void	ft_init_env(t_envi *env, t_tab *check, int ac, char **av)
 	env->pi = 0;
 	ft_init_chonk(env);
 	env->index_chonk = 0;
+	env->rotate = 0;
 	ft_add_number_in_list(env, check, i);
 }
 
 void	ft_init_chonk(t_envi *env)
 {
 	if (env->max_index >= 0 && env->max_index <= 20)
-		env->chonk = 10;
+		env->chonk = 8;
 	else if (env->max_index >= 21 && env->max_index <= 60)
 		env->chonk = 12;
 	else if (env->max_index >= 61 && env->max_index <= 150)

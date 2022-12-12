@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 16:44:57 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/09 13:36:18 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/12 12:51:20 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	ft_check_error(int ac, char **av)
 }
 
 int	ft_check_illegal_numbers(char *str);
+
 int	ft_check_arg(char *str)
 {
 	int	i;

@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:32:01 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/09 10:41:51 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/12 12:33:30 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,18 @@ int	ft_solver(t_envi *env)
 		{
 			if (ft_search_path(env->st_b, env->st_a->index - 1) < env->st_a->index / 2)
 			{
-				ft_rotate_b(env);
-				ft_printf("rb\n");
+				if (env->st_b->index == env->st_a->index - 2)
+				{
+					ft_push_a(env);
+					ft_rotate_a(env);
+					ft_printf("pa\nra\n");
+					env->rotate = 1;
+				}
+				else
+				{
+					ft_rotate_b(env);
+					ft_printf("rb\n");
+				}
 			}
 			else
 			{
@@ -39,6 +49,12 @@ int	ft_solver(t_envi *env)
 		}
 		ft_push_a(env);
 		ft_printf("pa\n");
+		if (env->rotate == 1)
+		{
+			ft_reverse_a(env);
+			ft_printf("rra\n");
+			env->rotate = 0;
+		}
 	}
 	return (0);
 }
@@ -105,15 +121,10 @@ void	ft_step1(t_envi *env)
 				ft_printf("pb\n");
 			}
 		}
-		else if (ft_search_path(env->st_a, env->st_a->index) < env->len_a / 2)
+		else
 		{
 			ft_rotate_a(env);
 			ft_printf("ra\n");
-		}
-		else
-		{
-			ft_reverse_a(env);
-			ft_printf("rra\n");
 		}
 	}	
 }
