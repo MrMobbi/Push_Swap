@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:32:01 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/12 12:33:30 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/12 15:58:11 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_step1(t_envi *env);
 void	ft_solve_a(t_envi *env);
+int		ft_lstlast_nbr(t_list *lst, int old);
 int		ft_search_path(t_list *list, int value);
 
 int	ft_solver(t_envi *env)
@@ -24,16 +25,17 @@ int	ft_solver(t_envi *env)
 	ft_solve_a(env);
 	while (ft_check_sort(env) == 1 || env->st_b != NULL)
 	{
-		while (env->st_b->index != env->st_a->index - 1)
+		while (env->st_b->index != env->st_a->index - 1 && env->st_b != NULL)
 		{
 			if (ft_search_path(env->st_b, env->st_a->index - 1) < env->st_a->index / 2)
 			{
-				if (env->st_b->index == env->st_a->index - 2)
+				if (env->st_b->index < env->st_a->index - 2 && env->st_b->index > env->under_a)
 				{
+					env->under_a = env->st_b->index;
 					ft_push_a(env);
 					ft_rotate_a(env);
 					ft_printf("pa\nra\n");
-					env->rotate = 1;
+					env->rotate++;
 				}
 				else
 				{
@@ -49,14 +51,32 @@ int	ft_solver(t_envi *env)
 		}
 		ft_push_a(env);
 		ft_printf("pa\n");
-		if (env->rotate == 1)
+		if (env->rotate > 0 && env->under_a == env->st_a->index - 1)
 		{
-			ft_reverse_a(env);
-			ft_printf("rra\n");
-			env->rotate = 0;
+			while (env->st_a->index - 1 == env->under_a && env->rotate > 0)
+			{
+				ft_reverse_a(env);
+				ft_printf("rra\n");
+				env->rotate--;
+				env->under_a = ft_lstlast_nbr(env->st_a, env->under_a);
+			}
 		}
 	}
 	return (0);
+}
+
+int	ft_lstlast_nbr(t_list *lst, int old)
+{
+	int		nbr;
+	t_list	*tmp;
+
+	tmp = lst;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	nbr = tmp->index;
+	if (old < nbr)
+		return (0);
+	return (nbr);
 }
 
 int	ft_search_path(t_list *list, int value)
@@ -68,6 +88,8 @@ int	ft_search_path(t_list *list, int value)
 	i = 0;
 	while (1)
 	{
+		if (path == NULL)
+			return (i);
 		if (path->index == value)
 			break ;
 		path = path->next;

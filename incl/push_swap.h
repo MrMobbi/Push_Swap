@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 11:57:44 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/12 12:10:35 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/12 14:36:01 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_envi {
 	int		chonk;
 	int		index_chonk;
 	int		rotate;
+	int		under_a;
 }			t_envi;
 
 //		##### Utils.c #####
