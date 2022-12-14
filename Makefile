@@ -6,7 +6,7 @@
 #    By: mjulliat <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/01 12:18:20 by mjulliat          #+#    #+#              #
-#    Updated: 2022/12/08 21:09:38 by mjulliat         ###   ########.fr        #
+#    Updated: 2022/12/14 16:14:18 by mjulliat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,11 +33,16 @@ SOURCES		= main.c\
 			  utils.c\
 			  utils_2.c\
 			  ft1_error.c\
+			  ft1_error2.c\
 			  ft1_init_env.c\
 			  ft1_add_index.c\
+			  ft1_add_index2.c\
 			  ft1_split.c\
 			  ft1_one_string.c\
 			  ft2_solver.c\
+			  ft2_solver2.c\
+			  ft2_step1.c\
+			  ft2_solve_b.c\
 			  ft2_swap_and_push.c\
 			  ft2_rotate_and_reverse.c
 

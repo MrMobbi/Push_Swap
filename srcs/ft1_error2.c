@@ -1,48 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_2.c                                          :+:      :+:    :+:   */
+/*   ft1_error2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 17:02:29 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/14 14:06:26 by mjulliat         ###   ########.fr       */
+/*   Created: 2022/12/14 11:20:17 by mjulliat          #+#    #+#             */
+/*   Updated: 2022/12/14 11:31:49 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_check_illegal_numbers(char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-void	ft_free_and_exit(t_envi *env, t_tab *check)
-{
-	ft_free_list(env->a);
-	free(check->tab);
-	exit(0);
-}
-
-void	ft_free(t_envi *env, t_tab *check)
-{
-	ft_free_list(env->a);
-	free(check->tab);
-}
-
-void	ft_free_list(t_list *list)
-{
-	t_list	*tmp;
-
-	while (list != NULL)
 	{
-		tmp = list;
-		list = list->next;
-		free(tmp);
+		if ((str[i] >= '0' && str[i] <= '9') && \
+				(str[i + 1] == '-' || str[i + 1] == '+'))
+			return (1);
+		i++;
 	}
+	return (0);
+}
+
+int	ft_check_int(double *tab, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		if (tab[i] <= -2147483649.0 || tab[i] >= 2147483648.0)
+			return (1);
+		i++;
+	}
+	return (0);
 }

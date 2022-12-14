@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 16:44:57 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/12 12:51:20 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/14 11:33:06 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	ft_check_error(int ac, char **av)
 	return (0);
 }
 
-int	ft_check_illegal_numbers(char *str);
-
 int	ft_check_arg(char *str)
 {
 	int	i;
@@ -61,6 +59,17 @@ int	ft_check_arg(char *str)
 		return (1);
 	while ((str[i] > '9' || str[i] < '0') && str[i] != '\0')
 		i++;
+	check = ft_check_arg2(&str[i], check);
+	if (check == 1)
+		return (1);
+	return (0);
+}
+
+int	ft_check_arg2(char *str, int check)
+{
+	int	i;
+
+	i = 0;
 	while (str[i] != '\0')
 	{
 		if ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
@@ -76,24 +85,7 @@ int	ft_check_arg(char *str)
 		}
 		i++;
 	}
-	if (check == 1)
-		return (1);
-	else
-		return (0);
-}
-
-int	ft_check_illegal_numbers(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if ((str[i] >= '0' && str[i] <= '9') && (str[i + 1] == '-' || str[i + 1] == '+'))
-			return (1);
-		i++;
-	}
-	return (0);
+	return (check);
 }
 
 int	ft_check_double(double *tab, int len)
@@ -112,20 +104,6 @@ int	ft_check_double(double *tab, int len)
 			start++;
 		}
 		start = 0;
-		i++;
-	}
-	return (0);
-}
-
-int	ft_check_int(double *tab, int len)
-{
-	int	i;
-
-	i = 0;
-	while (i < len)
-	{
-		if (tab[i] <= -2147483649.0 || tab[i] >= 2147483648.0)
-			return (1);
 		i++;
 	}
 	return (0);

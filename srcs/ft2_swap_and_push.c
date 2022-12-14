@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 11:39:50 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/07 17:28:36 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/14 14:03:21 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	ft_swap_a(t_envi *env)
 	t_list	*tmp1;
 	t_list	*tmp2;
 
-	tmp1 = env->st_a->next;
+	tmp1 = env->a->next;
 	tmp2 = tmp1->next;
-	tmp1->next = env->st_a;
-	env->st_a->next = tmp2;
-	env->st_a = tmp1;
+	tmp1->next = env->a;
+	env->a->next = tmp2;
+	env->a = tmp1;
 }
 
 void	ft_swap_b(t_envi *env)
@@ -29,11 +29,11 @@ void	ft_swap_b(t_envi *env)
 	t_list	*tmp1;
 	t_list	*tmp2;
 
-	tmp1 = env->st_b->next;
+	tmp1 = env->b->next;
 	tmp2 = tmp1->next;
-	tmp1->next = env->st_b;
-	env->st_b->next = tmp2;
-	env->st_b = tmp1;
+	tmp1->next = env->b;
+	env->b->next = tmp2;
+	env->b = tmp1;
 }
 
 void	ft_push_b(t_envi *env)
@@ -41,26 +41,26 @@ void	ft_push_b(t_envi *env)
 	t_list	*tmp;
 
 	env->len_a--;
-	if (env->st_b == NULL)
+	if (env->b == NULL)
 	{
-		env->st_b = env->st_a;
-		env->st_a = env->st_a->next;
-		env->st_b->next = NULL;
+		env->b = env->a;
+		env->a = env->a->next;
+		env->b->next = NULL;
 	}
 	else
 	{
-		if (env->st_a->next == NULL)
+		if (env->a->next == NULL)
 		{
-			env->st_a->next = env->st_b;
-			env->st_b = env->st_a;
-			env->st_a = NULL;
+			env->a->next = env->b;
+			env->b = env->a;
+			env->a = NULL;
 		}
 		else
 		{
-			tmp = env->st_a->next;
-			env->st_a->next = env->st_b;
-			env->st_b = env->st_a;
-			env->st_a = tmp;
+			tmp = env->a->next;
+			env->a->next = env->b;
+			env->b = env->a;
+			env->a = tmp;
 		}
 	}
 }
@@ -69,26 +69,26 @@ void	ft_push_a(t_envi *env)
 {
 	t_list	*tmp;
 
-	if (env->st_a == NULL)
+	if (env->a == NULL)
 	{
-		env->st_a = env->st_b;
-		env->st_b = env->st_b->next;
-		env->st_a->next = NULL;
+		env->a = env->b;
+		env->b = env->b->next;
+		env->a->next = NULL;
 	}
 	else
 	{
-		if (env->st_b->next == NULL)
+		if (env->b->next == NULL)
 		{
-			env->st_b->next = env->st_a;
-			env->st_a = env->st_b;
-			env->st_b = NULL;
+			env->b->next = env->a;
+			env->a = env->b;
+			env->b = NULL;
 		}
 		else
 		{
-			tmp = env->st_b->next;
-			env->st_b->next = env->st_a;
-			env->st_a = env->st_b;
-			env->st_b = tmp;
+			tmp = env->b->next;
+			env->b->next = env->a;
+			env->a = env->b;
+			env->b = tmp;
 		}
 	}
 }

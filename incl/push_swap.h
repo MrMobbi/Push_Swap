@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 11:57:44 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/14 11:07:57 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:14:39 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define RA "ra\n"
-# define RRA "rra\n"
-# define RB "rb\n"
-# define RRB "rrb\n"
-# define PA "pa\n"
-# define PB "pb\n"
-# define SA "sa\n"
-
 typedef struct s_tab {
 	double	*tab;
 	int		len;
@@ -33,13 +25,13 @@ typedef struct s_tab {
 
 typedef struct s_list {
 	int				value;
-	int				index;
+	int				idx;
 	struct s_list	*next;
 }					t_list;
 
 typedef struct s_envi {
-	t_list		*st_a;
-	t_list		*st_b;
+	t_list		*a;
+	t_list		*b;
 	int			max_index;
 	int			len_a;
 	int			limit;
@@ -48,7 +40,7 @@ typedef struct s_envi {
 	int			chonk;
 	int			index_chonk;
 	int			rotate;
-	int			under_a;
+	int			und_a;
 }				t_envi;
 
 //		##### Utils.c #####
@@ -75,7 +67,10 @@ t_tab	*ft_init_check(t_tab *check, int ac, char **av);
 void	ft_add_index(t_tab *check, t_envi *env);
 void	ft_index_to_list(t_tab *check, t_envi *env);
 void	ft_index(t_list *lst, int i, double nbr);
-void	ft_sort_check(double *list, int start, int pivot);
+void	ft_quick_sort(double *list, int start, int pivot);
+double	ft_quick_sort2(double *list, int *i, int *j, int pivot);
+
+//		##### Ft1_Add_Index2.c #####
 int		ft_check_pivot(double *list, int pivot);
 
 //		###### Ft1_One_String.c #####
@@ -94,12 +89,36 @@ char	**ft_split(char const *str, char c);
 int		ft_error(t_envi *env, t_tab *check, int ac, char **av);
 int		ft_check_error(int ac, char **av);
 int		ft_check_arg(char *str);
+int		ft_check_arg2(char *str, int check);
 int		ft_check_double(double *tab, int len);
+
+//		##### Ft1_Error2.c #####
+int		ft_check_illegal_numbers(char *str);
 int		ft_check_int(double *tab, int len);
 
 //		##### Ft2_Solver.c #####
 int		ft_solver(t_envi *env);
+int		ft_search_path(t_list *list, int value);
+void	ft_solve_a(t_envi *env);
+void	ft_print_ra(t_envi *env);
+void	ft_print_rra(t_envi *env);
+
+//		##### Ft2_Solver2.c #####
+void	ft_solve_2nbr(t_envi *env);
+void	ft_solve_5nbr(t_envi *env);
+void	ft_solve_5nbr2(t_envi *env);
 int		ft_check_sort(t_envi *env);
+int		ft_lstlast_nbr(t_list *lst, int old);
+
+//		##### Ft2_Step1.c #####
+void	ft_step1(t_envi *env);
+void	ft_step1_pb_and_rb(t_envi *env);
+void	ft_step1_pb(t_envi *env);
+
+//		##### Ft2_Solve_B.c #####
+void	ft_solve_b(t_envi *env);
+void	ft_push_under_a_rotate(t_envi *env);
+void	ft_push_under_a_reverse(t_envi *env);
 
 //		##### Ft2_Push_And_Swap.c #####
 void	ft_swap_a(t_envi *env);

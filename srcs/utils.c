@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:54:52 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/07 14:59:59 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/14 14:06:08 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_list	*ft_lstnew(t_tab *check, int i)
 	if (new == NULL)
 		return (NULL);
 	new->value = check->tab[i];
-	new->index = 0;
+	new->idx = 0;
 	new->next = NULL;
 	return (new);
 }

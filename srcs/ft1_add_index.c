@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:19:21 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/07 17:15:44 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/14 14:06:59 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_add_index(t_tab *check, t_envi *env)
 {
-	ft_sort_check(check->tab, 0, check->len - 1);
+	ft_quick_sort(check->tab, 0, check->len - 1);
 	ft_index_to_list(check, env);
 }
 
@@ -23,11 +23,11 @@ void	ft_index_to_list(t_tab *check, t_envi *env)
 	t_list	*tmp;
 	int		i;
 
-	tmp = env->st_a;
+	tmp = env->a;
 	i = 0;
 	while (i < check->len)
 	{
-		ft_index(env->st_a, i, check->tab[i]);
+		ft_index(env->a, i, check->tab[i]);
 		i++;
 	}
 }
@@ -40,57 +40,49 @@ void	ft_index(t_list *lst, int i, double nbr)
 	while (tmp->next != NULL)
 	{
 		if (tmp->value == nbr)
-			tmp->index = i + 1;
+			tmp->idx = i + 1;
 		tmp = tmp->next;
 	}
 	if (tmp->value == nbr)
-		tmp->index = i + 1;
+		tmp->idx = i + 1;
 }
 
-void	ft_sort_check(double *list, int start, int pivot)
+void	ft_quick_sort(double *list, int start, int pivot)
 {
 	double	tmp;
 	int		j;
 	int		i;
 
 	j = start;
-	i = j -1;
-	tmp = 0;
-	while (j < pivot)
-	{
-		if (list[j] < list[pivot])
-		{
-			i++;
-			tmp = list[j];
-			list[j] = list[i];
-			list[i] = tmp;
-		}
-		j++;
-	}
+	i = j - 1;
+	tmp = ft_quick_sort2(list, &i, &j, pivot);
 	i++;
 	tmp = list[j];
 	list[j] = list[i];
 	list[i] = tmp;
 	if (pivot - start > 0)
 	{
-		ft_sort_check(list, 0, i - 1);
+		ft_quick_sort(list, 0, i - 1);
 		if (ft_check_pivot(list, pivot) == 0)
-			ft_sort_check(list, i + 1, pivot);
+			ft_quick_sort(list, i + 1, pivot);
 	}
 }
 
-int	ft_check_pivot(double *list, int pivot)
+double	ft_quick_sort2(double *list, int *i, int *j, int pivot)
 {
-	int	i;
-	int	tmp;
+	double	tmp;
 
-	i = 0;
-	tmp = list[i];
-	while (i < pivot)
+	tmp = 0;
+	while (*j < pivot)
 	{
-		if (list[i] > list[i + 1])
-			return (0);
-		i++;
+		if (list[*j] < list[pivot])
+		{
+			(*i)++;
+			tmp = list[*j];
+			list[*j] = list[*i];
+			list[*i] = tmp;
+		}
+		(*j)++;
 	}
-	return (1);
+	return (tmp);
 }
