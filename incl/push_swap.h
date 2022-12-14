@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 11:57:44 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/12 14:36:01 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/14 11:07:57 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# define RA "ra\n"
+# define RRA "rra\n"
+# define RB "rb\n"
+# define RRB "rrb\n"
+# define PA "pa\n"
+# define PB "pb\n"
+# define SA "sa\n"
 
 typedef struct s_tab {
 	double	*tab;
@@ -30,17 +38,18 @@ typedef struct s_list {
 }					t_list;
 
 typedef struct s_envi {
-	t_list	*st_a;
-	t_list	*st_b;
-	int		max_index;
-	int		len_a;
-	int		limit;
-	int		pi;
-	int		chonk;
-	int		index_chonk;
-	int		rotate;
-	int		under_a;
-}			t_envi;
+	t_list		*st_a;
+	t_list		*st_b;
+	int			max_index;
+	int			len_a;
+	int			limit;
+	int			pi;
+	int			pi2;
+	int			chonk;
+	int			index_chonk;
+	int			rotate;
+	int			under_a;
+}				t_envi;
 
 //		##### Utils.c #####
 double	ft_atod(char *str);

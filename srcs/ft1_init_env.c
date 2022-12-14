@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 12:59:53 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/12 15:15:39 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/14 11:08:19 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_init_env(t_envi *env, t_tab *check, int ac, char **av)
 	env->len_a = check->len;
 	env->limit = check->len - 3;
 	env->pi = 0;
+	env->pi2 = 0;
 	ft_init_chonk(env);
 	env->index_chonk = 0;
 	env->rotate = 0;
@@ -40,17 +41,17 @@ void	ft_init_env(t_envi *env, t_tab *check, int ac, char **av)
 void	ft_init_chonk(t_envi *env)
 {
 	if (env->max_index >= 0 && env->max_index <= 20)
-		env->chonk = 8;
+		env->chonk = 10;
 	else if (env->max_index >= 21 && env->max_index <= 60)
-		env->chonk = 12;
+		env->chonk = 15;
 	else if (env->max_index >= 61 && env->max_index <= 150)
-		env->chonk = 18;
-	else if (env->max_index >= 150 && env->max_index <= 300)
 		env->chonk = 25;
+	else if (env->max_index >= 150 && env->max_index <= 300)
+		env->chonk = 35;
 	else if (env->max_index >= 301 && env->max_index <= 500)
-		env->chonk = 28;
+		env->chonk = 49;
 	else
-		env->chonk = 40;
+		env->chonk = 60;
 }
 
 void	ft_check_nbr_numbers(t_tab *check, char *str)

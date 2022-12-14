@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:32:01 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/12 19:26:19 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/14 11:10:12 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_step1(t_envi *env);
 void	ft_solve_a(t_envi *env);
 int		ft_lstlast_nbr(t_list *lst, int old);
 int		ft_search_path(t_list *list, int value);
+void	ft_check_printable(char *str);
 
 void	ft_solve_2nbr(t_envi *env)
 {
@@ -197,10 +198,13 @@ void	ft_step1(t_envi *env)
 	while (env->len_a > 3)
 	{
 		if (env->index_chonk == env->pi)
+		{
 			env->pi += env->chonk;
+			env->pi2 = env->pi - (env->chonk / 2);
+		}
 		if (env->st_a->index <= env->limit && env->st_a->index <= env->pi)
 		{
-			if (env->st_a->index <= env->limit && env->st_a->index <= env->pi / 2)
+			if (env->st_a->index <= env->limit && env->st_a->index <= env->pi2)
 			{
 				ft_push_b(env);
 				ft_rotate_b(env);
