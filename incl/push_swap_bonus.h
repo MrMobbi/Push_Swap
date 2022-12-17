@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/30 12:29:41 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/16 18:04:39 by mjulliat         ###   ########.fr       */
+/*   Created: 2022/12/14 16:46:07 by mjulliat          #+#    #+#             */
+/*   Updated: 2022/12/17 15:12:26 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef PUSH_SWAP_BONUS_H
+# define PUSH_SWAP_BONUS_H
 
-int	main(int ac, char **av)
-{
-	t_tab	check;
-	t_envi	env;
+# include "push_swap.h"
+# include "../gnl/get_next_line.h"
 
-	if (ac == 1)
-		return (0);
-	ft_init_env(&env, &check, ac, av);
-	if (ft_error(&env, &check, ac, av) == 1)
-		return (0);
-	ft_add_index(&check, &env);
-	ft_solver(&env);
-	ft_free(&env, &check);
-	return (0);
-}
+# define SA "sa"
+# define SB "sb"
+# define PA "pa"
+# define PB "pb"
+# define RA "ra"
+# define RB "rb"
+# define RRA "rra"
+# define RRB "rrb"
+
+//		##### Main_Bonus.c #####
+
+//		##### Utils_Bonus.c #####
+int	ft_strcmp(char *s1, char *s2);
+
+#endif

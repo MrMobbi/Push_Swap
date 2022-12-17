@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 12:59:53 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/14 14:06:50 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:38:03 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ void	ft_init_env(t_envi *env, t_tab *check, int ac, char **av)
 
 	i = 0;
 	if (ac == 2)
-		ft_check_nbr_numbers(check, av[1]);
+		ft_check_nbr_numbers(check, av);
 	else
 		check = ft_init_check(check, ac, av);
 	a = ft_lstnew(check, i);
 	i++;
 	env->a = a;
 	env->b = NULL;
+	env->one_string = ft_number_in_arg(av[1]);
 	env->max_index = check->len;
 	env->len_a = check->len;
 	env->limit = check->len - 3;
@@ -51,10 +52,10 @@ void	ft_init_chonk(t_envi *env)
 	else if (env->max_index >= 301 && env->max_index <= 500)
 		env->chonk = 49;
 	else
-		env->chonk = 60;
+		env->chonk = 70;
 }
 
-void	ft_check_nbr_numbers(t_tab *check, char *str)
+void	ft_check_nbr_numbers(t_tab *check, char **av)
 {
 	int	i;
 	int	count;
@@ -63,22 +64,23 @@ void	ft_check_nbr_numbers(t_tab *check, char *str)
 	i = 0;
 	count = 1;
 	test = 0;
-	while (str[i] != '\0')
+	while (av[1][i] != '\0')
 	{
-		if (((str[i] >= '0' && str[i] <= '9') || str[i] == '-' || \
-				str[i] == '+') && str[i - 1] == ' ')
-			count ++;
+		if ((av[1][i] == '-' || av[1][i] == '+') && \
+			(av[1][i + 1] < '0' || av[1][i + 1] > '9'))
+		{
+			write(2, "Error\n", 6);
+			exit(0);
+		}
+		if (av[1][i] >= '0' && av[1][i] <= '9' && \
+			(av[1][i - 1] == ' ' || av[1][i - 1] == '-' || av[1][i] == '+'))
+				count++;
 		i++;
 	}
 	if (count > 1)
-		check = ft_one_string(str, check);
+		check = ft_one_string(av[1], check);
 	else
-	{
-		test = ft_check_arg(str);
-		if (test == 1)
-			write(2, "Error\n", 6);
-		exit(0);
-	}
+		check = ft_init_check(check, 2, av);
 }
 
 void	ft_add_number_in_list(t_envi *env, t_tab *check, int i)

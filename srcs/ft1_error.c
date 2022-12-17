@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 16:44:57 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/14 11:33:06 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:41:51 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_error(t_envi *env, t_tab *check, int ac, char **av)
 {
-	if (ft_check_error(ac, av) == 1)
+	if (ft_check_error(env, ac, av) == 1)
 	{
 		write(2, "Error\n", 6);
 		ft_free_and_exit(env, check);
@@ -32,7 +32,7 @@ int	ft_error(t_envi *env, t_tab *check, int ac, char **av)
 	return (0);
 }
 
-int	ft_check_error(int ac, char **av)
+int	ft_check_error(t_envi *env, int ac, char **av)
 {
 	int	i;
 
@@ -41,6 +41,11 @@ int	ft_check_error(int ac, char **av)
 		return (1);
 	while (i < ac)
 	{
+		if (env->one_string == 1)
+		{
+			if (ft_number_in_arg(av[i]) > 1)
+				return (1);
+		}
 		if (ft_check_arg(av[i]) == 1)
 			return (1);
 		i++;
@@ -74,7 +79,9 @@ int	ft_check_arg2(char *str, int check)
 	{
 		if ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
 			check = 0;
-		else if (str[i] == '-' || str[i] == '+')
+		else if (str[i] == '-' && str[i + 1] >= '0' && str[i + 1] <= '9')
+			check = 0;
+		else if (str[i] == '+' && str[i + 1] >= '0' && str[i + 1] <= '9')
 			check = 0;
 		else if (str[i] >= '0' && str[i] <= '9')
 			check = 0;

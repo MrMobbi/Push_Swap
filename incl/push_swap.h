@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 11:57:44 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/14 16:14:39 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:37:26 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "../ft_printf/ft_printf.h"
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -32,6 +31,7 @@ typedef struct s_list {
 typedef struct s_envi {
 	t_list		*a;
 	t_list		*b;
+	int			one_string;
 	int			max_index;
 	int			len_a;
 	int			limit;
@@ -55,11 +55,12 @@ size_t	ft_strlen(const char *str);
 void	ft_free_and_exit(t_envi *env, t_tab *check);
 void	ft_free(t_envi *env, t_tab *check);
 void	ft_free_list(t_list *list);
+int		ft_number_in_arg(char *str);
 
 //		##### Ft1_Init_Env.c ######
 void	ft_init_env(t_envi *env, t_tab *check, int ac, char **av);
 void	ft_init_chonk(t_envi *env);
-void	ft_check_nbr_numbers(t_tab *check, char *str);
+void	ft_check_nbr_numbers(t_tab *check, char **av);
 void	ft_add_number_in_list(t_envi *env, t_tab *check, int i);
 t_tab	*ft_init_check(t_tab *check, int ac, char **av);
 
@@ -87,7 +88,7 @@ char	**ft_split(char const *str, char c);
 
 //		##### Ft1_Error.c #####
 int		ft_error(t_envi *env, t_tab *check, int ac, char **av);
-int		ft_check_error(int ac, char **av);
+int		ft_check_error(t_envi *env, int ac, char **av);
 int		ft_check_arg(char *str);
 int		ft_check_arg2(char *str, int check);
 int		ft_check_double(double *tab, int len);

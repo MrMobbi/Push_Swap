@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:02:29 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/14 14:06:26 by mjulliat         ###   ########.fr       */
+/*   Updated: 2022/12/16 14:21:26 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,28 @@ void	ft_free_list(t_list *list)
 		list = list->next;
 		free(tmp);
 	}
+}
+
+int	ft_number_in_arg(char *str)
+{
+	int	i;
+	int	count;
+	int	check;
+
+	i = 0;
+	count = 1;
+	check = 0;
+	while (str[i] != '\0')
+	{
+		if (((str[i] >= '0' && str[i] <= '9') \
+				|| (str[i] == '-' || str[i] == '+')) && str[i - 1] == ' ')
+			check = 1;
+		if (check == 1)
+		{
+			count++;
+			check = 0;
+		}
+		i++;
+	}
+	return (count);
 }
