@@ -6,7 +6,7 @@
 #    By: mjulliat <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/01 12:18:20 by mjulliat          #+#    #+#              #
-#    Updated: 2022/12/17 15:14:39 by mjulliat         ###   ########.fr        #
+#    Updated: 2022/12/17 19:25:10 by mjulliat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,10 @@ BONUS		= main_bonus.c\
 			  ft2_step1.c\
 			  ft2_solve_b.c\
 			  ft2_swap_and_push.c\
-			  ft2_rotate_and_reverse.c
+			  ft2_rotate_and_reverse.c\
+			  ft3_swap_and_push.c\
+			  ft3_rotate.c\
+			  ft3_reverse.c
 
 
 	### OBJETCTS ###

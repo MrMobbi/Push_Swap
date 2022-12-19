@@ -2,7 +2,7 @@
 declare -i a=0
 declare -i b=0
 declare -i max=0
-for ((n=0;n<100;n++))
+for ((n=0;n<20;n++))
 do
 
 echo "##### $n #####"

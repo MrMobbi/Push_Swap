@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_bonus.c                                      :+:      :+:    :+:   */
+/*   ft3_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 14:56:55 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/12/17 19:21:49 by mjulliat         ###   ########.fr       */
+/*   Created: 2022/12/01 12:37:55 by mjulliat          #+#    #+#             */
+/*   Updated: 2022/12/17 19:19:45 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 
-int	ft_strcmp(char *s1, char *s2)
+void	ft_check_rotate_a(t_envi *env)
 {
-	int	i;
-	int	sum;
-
-	i = 0;
-	sum = 0;
-	while (s1[i] != s2[i] || s2[i] != '\0')
-	{
-		if (s1[i] < s2[i] || s1[i] > s2[i])
-		{
-			sum = s1[i] - s2[i];
-			return (sum);
-		}
-		else
-			sum = 0;
-		i++;
-	}
-	return (sum);
+	if (env->a != NULL && env->a->next != NULL)
+		ft_rotate_a(env);
 }
 
-void	ft_error_checker(void)
+void	ft_check_rotate_b(t_envi *env)
 {
-	write(2, "Error\n", 6);
-	exit(0);
+	if (env->b != NULL && env->b->next != NULL)
+		ft_rotate_b(env);
+}
+
+void	ft_check_rr(t_envi *env)
+{
+	if (env->b != NULL && env->b->next != NULL)
+	{
+		if (env->a != NULL && env->a->next != NULL)
+		{
+			ft_rotate_a(env);
+			ft_rotate_b(env);
+		}	
+	}
 }
